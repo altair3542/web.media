@@ -1,147 +1,130 @@
-import React, { useState, useEffect } from 'react';
-import { FaReact } from 'react-icons/fa'; // Importar el icono de React
+import React from 'react';
+import { FaReact } from 'react-icons/fa'; // Para el icono de React
 
-function App() {
-  const [hoveredCardIndex, setHoveredCardIndex] = useState(null);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 768);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
+const SolidBento = () => {
   const sessions = [
     {
       title: 'Sesión 1: Introducción a JavaScript y Estructuras Básicas',
       objective: 'Familiarizarse con la sintaxis básica de JavaScript.',
-      image: 'https://via.placeholder.com/300',
-      link: '#', // Simula un link válido
+      link: '/session1',
+      date: '12.10.1999',
     },
     {
       title: 'Sesión 2: Manipulación del DOM y Eventos en JavaScript',
       objective: 'Entender cómo interactuar con el DOM y manejar eventos.',
-      image: 'https://via.placeholder.com/300',
-      link: '', // Simula que no hay link disponible
+      link: '/session2',
+      date: '15.10.1999',
     },
     {
       title: 'Sesión 3: Introducción a React/Angular',
       objective: 'Introducir el concepto de componentes y estado en React.',
-      image: 'https://via.placeholder.com/300',
-      link: '#', // Simula un link válido
+      link: '/session3',
+      date: '20.10.1999',
     },
     {
       title: 'Sesión 4: Formularios y validaciones',
       objective: 'Aprender a trabajar con formularios dinámicos y cómo validar las entradas de usuario.',
-      image: 'https://via.placeholder.com/300',
-      link: '', // Simula que no hay link disponible
+      link: '/session4',
+      date: '25.10.1999',
     },
     {
       title: 'Sesión 5: Introducción a Django y Django Rest Framework (DRF)',
       objective: 'Crear una API funcional en Django para que el frontend (React) pueda interactuar con ella.',
-      image: 'https://via.placeholder.com/300',
-      link: '#', // Simula un link válido
+      link: '/session5',
+      date: '30.10.1999',
     },
     {
       title: 'Sesión 6: Integración de Frontend con Backend',
       objective: 'Lograr la comunicación total entre frontend y backend, gestionando el estado de la aplicación y la autenticación.',
-      image: 'https://via.placeholder.com/300',
-      link: '', // Simula que no hay link disponible
+      link: '/session6',
+      date: '05.11.1999',
     },
     {
       title: 'Sesión 7: Optimización y despliegue',
       objective: 'Optimizar y desplegar la aplicación completa, tanto el frontend como el backend, en un entorno de producción.',
-      image: 'https://via.placeholder.com/300',
-      link: '#', // Simula un link válido
+      link: '/session7',
+      date: '10.11.1999',
     },
     {
       title: 'Sesión 8: Examen Final',
       objective: 'Prueba lo que sabes.',
-      image: 'https://via.placeholder.com/300',
-      link: '', // Simula que no hay link disponible
+      link: '/session8',
+      date: '15.11.1999',
     },
   ];
 
-
-  const notMultipleOfThree = sessions.length % 3 !== 0;
-
   return (
-    <div className="bg-gray-900 text-white min-h-screen p-8 flex flex-col justify-between">
-      <main>
-        <h1 className="text-4xl font-bold text-center mb-8">Temario de Clases Programación Web Media</h1>
-        <div className="max-w-screen-xl mx-auto">
-          <div className={`grid gap-6 ${isMobile ? 'grid-cols-1' : 'grid-cols-3'} justify-center`}>
-            {sessions.map((session, index) => {
-              const isLastTwo = notMultipleOfThree && index >= sessions.length - 2 && !isMobile;
-              const buttonText = session.link ? 'Ver la clase' : 'Próximamente...';
+    <div className="flex flex-col min-h-screen justify-between">
+      {/* Header */}
+      <header className="bg-gray-800 text-white p-4">
+        <h1 className="text-3xl font-bold text-center">Temario de Clases de Programación Web</h1>
+      </header>
 
-              if (isLastTwo && index === sessions.length - 2) {
-                return (
-                  <div className="flex justify-center w-full col-span-3" key={index}>
-                    <div
-                      className={`bg-gray-800 rounded-lg p-6 shadow-lg transform transition-transform w-1/2 ${hoveredCardIndex === index ? 'scale-105 shadow-xl' : ''}`}
-                      onMouseEnter={() => setHoveredCardIndex(index)}
-                      onMouseLeave={() => setHoveredCardIndex(null)}
-                    >
-                      <img src={session.image} alt={session.title} className="rounded-lg w-full mb-4" />
-                      <h3 className="text-2xl font-semibold mb-2">{session.title}</h3>
-                      <p className="text-gray-400 mb-4">{session.objective}</p>
-                      <a
-                        href={session.link ? session.link : '#'}
-                        className={`inline-block px-4 py-2 rounded-lg transition-colors ${session.link ? 'bg-purple-600 text-white hover:bg-purple-500' : 'bg-gray-500 text-gray-300 cursor-not-allowed'}`}
-                      >
-                        {buttonText}
-                      </a>
-                    </div>
-                    <div
-                      className={`bg-gray-800 rounded-lg p-6 shadow-lg transform transition-transform w-1/2 ml-6 ${hoveredCardIndex === index + 1 ? 'scale-105 shadow-xl' : ''}`}
-                      onMouseEnter={() => setHoveredCardIndex(index + 1)}
-                      onMouseLeave={() => setHoveredCardIndex(null)}
-                      key={index + 1}
-                    >
-                      <img src={sessions[index + 1].image} alt={sessions[index + 1].title} className="rounded-lg w-full mb-4" />
-                      <h3 className="text-2xl font-semibold mb-2">{sessions[index + 1].title}</h3>
-                      <p className="text-gray-400 mb-4">{sessions[index + 1].objective}</p>
-                      <a
-                        href={sessions[index + 1].link ? sessions[index + 1].link : '#'}
-                        className={`inline-block px-4 py-2 rounded-lg transition-colors ${sessions[index + 1].link ? 'bg-purple-600 text-white hover:bg-purple-500' : 'bg-gray-500 text-gray-300 cursor-not-allowed'}`}
-                      >
-                        {sessions[index + 1].link ? 'Ver la clase' : 'Próximamente...'}
-                      </a>
-                    </div>
-                  </div>
-                );
-              }
+      {/* Main Content */}
+      <main className="flex-grow flex items-center justify-center">
+        <div className="grid h-[85%] w-[85%] gap-6 bg-gray-200 p-4 grid-cols-4 grid-rows-4 rounded-lg shadow-md">
 
-              if (index !== sessions.length - 1) {
-                return (
-                  <div
-                    key={index}
-                    className={`bg-gray-800 rounded-lg p-6 shadow-lg transform transition-transform ${hoveredCardIndex === index ? 'scale-105 shadow-xl' : ''}`}
-                    onMouseEnter={() => setHoveredCardIndex(index)}
-                    onMouseLeave={() => setHoveredCardIndex(null)}
-                  >
-                    <img src={session.image} alt={session.title} className="rounded-lg w-full mb-4" />
-                    <h3 className="text-2xl font-semibold mb-2">{session.title}</h3>
-                    <p className="text-gray-400 mb-4">{session.objective}</p>
-                    <a
-                      href={session.link ? session.link : '#'}
-                      className={`inline-block px-4 py-2 rounded-lg transition-colors ${session.link ? 'bg-purple-600 text-white hover:bg-purple-500' : 'bg-gray-500 text-gray-300 cursor-not-allowed'}`}
-                    >
-                      {buttonText}
-                    </a>
-                  </div>
-                );
-              }
+          {/* Sesión 1 */}
+          <a href={sessions[0].link} className="col-span-1 row-span-4 bg-gray-300 rounded-lg shadow-md flex flex-col items-center justify-center text-center p-4">
+            <h2 className="text-2xl font-bold">{sessions[0].title}</h2>
+            <p className="mt-2 text-gray-700">{sessions[0].objective}</p>
+            <p className="mt-2 text-gray-500">{sessions[0].date}</p>
+          </a>
 
-              return null;
-            })}
-          </div>
+          {/* Sesión 2 */}
+          <a href={sessions[1].link} className="col-span-1 row-span-2 bg-gray-300 rounded-lg shadow-md flex flex-col items-center justify-center text-center p-4">
+            <h2 className="text-2xl font-bold">{sessions[1].title}</h2>
+            <p className="mt-2 text-gray-700">{sessions[1].objective}</p>
+            <p className="mt-2 text-gray-500">{sessions[1].date}</p>
+          </a>
+
+          {/* Sesión 4 */}
+          <a href={sessions[3].link} className="col-span-1 row-span-3 bg-gray-300 rounded-lg shadow-md flex flex-col items-center justify-center text-center p-4">
+            <h2 className="text-2xl font-bold">{sessions[3].title}</h2>
+            <p className="mt-2 text-gray-700">{sessions[3].objective}</p>
+            <p className="mt-2 text-gray-500">{sessions[3].date}</p>
+          </a>
+
+          {/* Sesión 6 */}
+          <a href={sessions[5].link} className="col-span-1 row-span-1 bg-gray-300 rounded-lg shadow-md flex flex-col items-center justify-center text-center p-4">
+            <h2 className="text-2xl font-bold">{sessions[5].title}</h2>
+            <p className="mt-2 text-gray-700">{sessions[5].objective}</p>
+            <p className="mt-2 text-gray-500">{sessions[5].date}</p>
+          </a>
+
+          {/* Sesión 7 */}
+          <a href={sessions[6].link} className="col-span-1 row-span-1 bg-gray-300 rounded-lg shadow-md flex flex-col items-center justify-center text-center p-4">
+            <h2 className="text-2xl font-bold">{sessions[6].title}</h2>
+            <p className="mt-2 text-gray-700">{sessions[6].objective}</p>
+            <p className="mt-2 text-gray-500">{sessions[6].date}</p>
+          </a>
+
+          {/* Sesión 3 */}
+          <a href={sessions[2].link} className="col-span-1 row-span-2 bg-gray-300 rounded-lg shadow-md flex flex-col items-center justify-center text-center p-4">
+            <h2 className="text-2xl font-bold">{sessions[2].title}</h2>
+            <p className="mt-2 text-gray-700">{sessions[2].objective}</p>
+            <p className="mt-2 text-gray-500">{sessions[2].date}</p>
+          </a>
+
+          {/* Sesión 8 */}
+          <a href={sessions[7].link} className="col-span-1 row-span-2 bg-gray-300 rounded-lg shadow-md flex flex-col items-center justify-center text-center p-4">
+            <h2 className="text-2xl font-bold">{sessions[7].title}</h2>
+            <p className="mt-2 text-gray-700">{sessions[7].objective}</p>
+            <p className="mt-2 text-gray-500">{sessions[7].date}</p>
+          </a>
+
+          {/* Sesión 5 */}
+          <a href={sessions[4].link} className="col-span-1 row-span-1 bg-gray-300 rounded-lg shadow-md flex flex-col items-center justify-center text-center p-4">
+            <h2 className="text-2xl font-bold">{sessions[4].title}</h2>
+            <p className="mt-2 text-gray-700">{sessions[4].objective}</p>
+            <p className="mt-2 text-gray-500">{sessions[4].date}</p>
+          </a>
+
         </div>
       </main>
 
-      {/* Footer global */}
-      <footer className="bg-gray-800 text-center p-6 mt-8">
+      {/* Footer */}
+      <footer className="bg-gray-800 text-center p-6">
         <p className="text-gray-400 mb-2">© 2024 Santiago Mesa Serna - Todos los derechos reservados</p>
         <p className="text-gray-400 flex justify-center items-center">
           Hecho con React <FaReact className="text-blue-500 ml-2" size={20} />
@@ -149,6 +132,7 @@ function App() {
       </footer>
     </div>
   );
-}
+};
 
-export default App;
+export default SolidBento;
+
