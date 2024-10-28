@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 function App() {
   const [hoveredCardIndex, setHoveredCardIndex] = useState(null);
-  const [hoveredButtonIndex, setHoveredButtonIndex] = useState(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -62,96 +61,83 @@ function App() {
     },
   ];
 
+  // Verificar si el número de tarjetas no es múltiplo de 3
+  const notMultipleOfThree = sessions.length % 3 !== 0;
+
   return (
-    <div style={containerStyle}>
-      <h1>Temario de Clases Programación Web Media</h1>
-      <div style={isMobile ? mobileGridStyle : gridStyle}>
-        {sessions.map((session, index) => (
-          <div
-            key={index}
-            style={{
-              ...cardStyle,
-              ...(hoveredCardIndex === index ? cardHoverStyle : {}),
-            }}
-            onMouseEnter={() => setHoveredCardIndex(index)}
-            onMouseLeave={() => setHoveredCardIndex(null)}
-          >
-            <img src={session.image} alt={session.title} style={imgStyle} />
-            <h3>{session.title}</h3>
-            <p>{session.objective}</p>
-            <a
-              href={session.link}
-              style={{
-                ...buttonStyle,
-                ...(hoveredButtonIndex === index ? buttonHoverStyle : {}),
-              }}
-              onMouseEnter={() => setHoveredButtonIndex(index)}
-              onMouseLeave={() => setHoveredButtonIndex(null)}
-            >
-              Ver la clase
-            </a>
-          </div>
-        ))}
+    <div className="bg-gray-900 text-white min-h-screen p-8">
+      <h1 className="text-4xl font-bold text-center mb-8">Temario de Clases Programación Web Media</h1>
+      <div className={`grid gap-6 ${isMobile ? 'grid-cols-1' : 'grid-cols-3'} justify-center`}>
+        {sessions.map((session, index) => {
+          // Si el número de tarjetas no es múltiplo de 3 y estamos en las dos últimas tarjetas
+          const isLastTwo = notMultipleOfThree && index >= sessions.length - 2 && !isMobile;
+
+          // Si estamos en las dos últimas tarjetas, renderizar solo dentro del contenedor `flex`
+          if (isLastTwo && index === sessions.length - 2) {
+            return (
+              <div className="flex justify-center w-full col-span-3" key={index}>
+                <div
+                  className={`bg-gray-800 rounded-lg p-6 shadow-lg transform transition-transform w-1/2 ${hoveredCardIndex === index ? 'scale-105 shadow-xl' : ''}`}
+                  onMouseEnter={() => setHoveredCardIndex(index)}
+                  onMouseLeave={() => setHoveredCardIndex(null)}
+                >
+                  <img src={session.image} alt={session.title} className="rounded-lg w-full mb-4" />
+                  <h3 className="text-2xl font-semibold mb-2">{session.title}</h3>
+                  <p className="text-gray-400 mb-4">{session.objective}</p>
+                  <a
+                    href={session.link}
+                    className="inline-block bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-500 transition-colors"
+                  >
+                    Ver la clase
+                  </a>
+                </div>
+                <div
+                  className={`bg-gray-800 rounded-lg p-6 shadow-lg transform transition-transform w-1/2 ml-6 ${hoveredCardIndex === index + 1 ? 'scale-105 shadow-xl' : ''}`}
+                  onMouseEnter={() => setHoveredCardIndex(index + 1)}
+                  onMouseLeave={() => setHoveredCardIndex(null)}
+                  key={index + 1}
+                >
+                  <img src={sessions[index + 1].image} alt={sessions[index + 1].title} className="rounded-lg w-full mb-4" />
+                  <h3 className="text-2xl font-semibold mb-2">{sessions[index + 1].title}</h3>
+                  <p className="text-gray-400 mb-4">{sessions[index + 1].objective}</p>
+                  <a
+                    href={sessions[index + 1].link}
+                    className="inline-block bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-500 transition-colors"
+                  >
+                    Ver la clase
+                  </a>
+                </div>
+              </div>
+            );
+          }
+
+          // Mostrar las demás tarjetas
+          if (index !== sessions.length - 1) {
+            return (
+              <div
+                key={index}
+                className={`bg-gray-800 rounded-lg p-6 shadow-lg transform transition-transform ${hoveredCardIndex === index ? 'scale-105 shadow-xl' : ''}`}
+                onMouseEnter={() => setHoveredCardIndex(index)}
+                onMouseLeave={() => setHoveredCardIndex(null)}
+              >
+                <img src={session.image} alt={session.title} className="rounded-lg w-full mb-4" />
+                <h3 className="text-2xl font-semibold mb-2">{session.title}</h3>
+                <p className="text-gray-400 mb-4">{session.objective}</p>
+                <a
+                  href={session.link}
+                  className="inline-block bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-500 transition-colors"
+                >
+                  Ver la clase
+                </a>
+              </div>
+            );
+          }
+
+          return null; // Evitar renderizar la última tarjeta dos veces
+        })}
       </div>
     </div>
   );
 }
-
-const containerStyle = {
-  backgroundColor: '#0f172a',
-  color: 'white',
-  padding: '20px',
-  textAlign: 'center',
-};
-
-const gridStyle = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
-  gap: '20px',
-  justifyContent: 'center',
-  padding: '20px',
-};
-
-const mobileGridStyle = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(1, 1fr)',
-  gap: '20px',
-  justifyContent: 'center',
-  padding: '20px',
-};
-
-const cardStyle = {
-  backgroundColor: '#1e293b',
-  color: 'white',
-  borderRadius: '10px',
-  padding: '20px',
-  width: '300px',
-  margin: '20px',
-  textAlign: 'center',
-  transition: 'transform 0.2s, box-shadow 0.2s',
-};
-
-const cardHoverStyle = {
-  transform: 'scale(1.05)',
-  boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.5)',
-};
-
-const imgStyle = {
-  width: '100%',
-  borderRadius: '10px',
-};
-
-const buttonStyle = {
-  backgroundColor: '#9f7aea',
-  color: 'white',
-  padding: '10px',
-  borderRadius: '5px',
-  textDecoration: 'none',
-  transition: 'background-color 0.3s',
-};
-
-const buttonHoverStyle = {
-  backgroundColor: '#7c3aed',
-};
 
 export default App;
