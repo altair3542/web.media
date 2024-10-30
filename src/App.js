@@ -98,7 +98,7 @@ function App() {
                   hoveredIndex === index ? "translate-y-0" : "translate-y-full"
                 }`}
                 style={{
-                  backgroundImage: `url(https://via.placeholder.com/300)`,
+                  backgroundImage: `url(/images/imagen${index + 1}.jpg)`,  // Ruta de imágenes en public
                   backgroundColor: "rgba(0, 0, 0, 0.7)",
                 }}
               >
