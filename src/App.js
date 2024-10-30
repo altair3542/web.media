@@ -1,138 +1,121 @@
-import React from 'react';
-import { FaReact } from 'react-icons/fa'; // Para el icono de React
+import React, { useState } from "react";
 
-const SolidBento = () => {
-  const sessions = [
-    {
-      title: 'Sesión 1: Introducción a JavaScript y Estructuras Básicas',
-      objective: 'Familiarizarse con la sintaxis básica de JavaScript.',
-      link: '/session1',
-      date: '12.10.1999',
-    },
-    {
-      title: 'Sesión 2: Manipulación del DOM y Eventos en JavaScript',
-      objective: 'Entender cómo interactuar con el DOM y manejar eventos.',
-      link: '/session2',
-      date: '15.10.1999',
-    },
-    {
-      title: 'Sesión 3: Introducción a React/Angular',
-      objective: 'Introducir el concepto de componentes y estado en React.',
-      link: '/session3',
-      date: '20.10.1999',
-    },
-    {
-      title: 'Sesión 4: Formularios y validaciones',
-      objective: 'Aprender a trabajar con formularios dinámicos y cómo validar las entradas de usuario.',
-      link: '/session4',
-      date: '25.10.1999',
-    },
-    {
-      title: 'Sesión 5: Introducción a Django y Django Rest Framework (DRF)',
-      objective: 'Crear una API funcional en Django para que el frontend (React) pueda interactuar con ella.',
-      link: '/session5',
-      date: '30.10.1999',
-    },
-    {
-      title: 'Sesión 6: Integración de Frontend con Backend',
-      objective: 'Lograr la comunicación total entre frontend y backend, gestionando el estado de la aplicación y la autenticación.',
-      link: '/session6',
-      date: '05.11.1999',
-    },
-    {
-      title: 'Sesión 7: Optimización y despliegue',
-      objective: 'Optimizar y desplegar la aplicación completa, tanto el frontend como el backend, en un entorno de producción.',
-      link: '/session7',
-      date: '10.11.1999',
-    },
-    {
-      title: 'Sesión 8: Examen Final',
-      objective: 'Prueba lo que sabes.',
-      link: '/session8',
-      date: '15.11.1999',
-    },
-  ];
+const sessions = [
+  {
+    title: "Sesión 1: Introducción a JavaScript y Estructuras Básicas",
+    description: "Familiarizarse con la sintaxis básica de JavaScript.",
+    date: "12.10.1999",
+  },
+  {
+    title: "Sesión 2: Manipulación del DOM y Eventos en JavaScript",
+    description: "Entender cómo interactuar con el DOM y manejar eventos.",
+    date: "15.10.1999",
+  },
+  {
+    title: "Sesión 3: Introducción a React/Angular",
+    description: "Introducir el concepto de componentes y estado en React.",
+    date: "20.10.1999",
+  },
+  {
+    title: "Sesión 4: Formularios y validaciones",
+    description:
+      "Aprender a trabajar con formularios dinámicos y validar entradas de usuario.",
+    date: "25.10.1999",
+  },
+  {
+    title: "Sesión 5: Introducción a Django y Django Rest Framework (DRF)",
+    description:
+      "Crear una API funcional en Django para que el frontend (React) pueda interactuar con ella.",
+    date: "30.10.1999",
+  },
+  {
+    title: "Sesión 6: Integración de Frontend con Backend",
+    description:
+      "Lograr la comunicación total entre frontend y backend, gestionando el estado de la aplicación y la autenticación.",
+    date: "05.11.1999",
+  },
+  {
+    title: "Sesión 7: Optimización y despliegue",
+    description:
+      "Optimizar y desplegar la aplicación completa, tanto el frontend como el backend, en un entorno de producción.",
+    date: "10.11.1999",
+  },
+  {
+    title: "Sesión 8: Examen Final",
+    description: "Prueba lo que sabes.",
+    date: "15.11.1999",
+  },
+];
+
+function App() {
+  const [darkMode, setDarkMode] = useState(true); // Estado para el tema
 
   return (
-    <div className="flex flex-col min-h-screen justify-between">
+    <div
+      className={`${
+        darkMode ? "bg-dark text-gray-300" : "bg-gray-100 text-gray-900"
+      } min-h-screen transition-all duration-500 ease-in-out`}
+    >
+      {/* Botón para cambiar el tema */}
+      <button
+        onClick={() => setDarkMode(!darkMode)}
+        className="absolute top-4 right-4 py-2 px-4 bg-blue-500 text-white rounded"
+      >
+        {darkMode ? "Modo Claro" : "Modo Oscuro"}
+      </button>
+
       {/* Header */}
-      <header className="bg-gray-800 text-white p-4">
-        <h1 className="text-3xl font-bold text-center">Temario de Clases de Programación Web</h1>
+      <header className={darkMode ? "bg-gray-800 py-4" : "bg-gray-300 py-4"}>
+        <h1 className="text-center text-3xl font-bold">
+          Temario de Clases de Programación Web
+        </h1>
       </header>
 
-      {/* Main Content */}
-      <main className="flex-grow flex items-center justify-center">
-        <div className="grid h-[85%] w-[85%] gap-6 bg-gray-200 p-4 grid-cols-4 grid-rows-4 rounded-lg shadow-md">
-
-          {/* Sesión 1 */}
-          <a href={sessions[0].link} className="col-span-1 row-span-4 bg-gray-300 rounded-lg shadow-md flex flex-col items-center justify-center text-center p-4">
-            <h2 className="text-2xl font-bold">{sessions[0].title}</h2>
-            <p className="mt-2 text-gray-700">{sessions[0].objective}</p>
-            <p className="mt-2 text-gray-500">{sessions[0].date}</p>
-          </a>
-
-          {/* Sesión 2 */}
-          <a href={sessions[1].link} className="col-span-1 row-span-2 bg-gray-300 rounded-lg shadow-md flex flex-col items-center justify-center text-center p-4">
-            <h2 className="text-2xl font-bold">{sessions[1].title}</h2>
-            <p className="mt-2 text-gray-700">{sessions[1].objective}</p>
-            <p className="mt-2 text-gray-500">{sessions[1].date}</p>
-          </a>
-
-          {/* Sesión 4 */}
-          <a href={sessions[3].link} className="col-span-1 row-span-3 bg-gray-300 rounded-lg shadow-md flex flex-col items-center justify-center text-center p-4">
-            <h2 className="text-2xl font-bold">{sessions[3].title}</h2>
-            <p className="mt-2 text-gray-700">{sessions[3].objective}</p>
-            <p className="mt-2 text-gray-500">{sessions[3].date}</p>
-          </a>
-
-          {/* Sesión 6 */}
-          <a href={sessions[5].link} className="col-span-1 row-span-1 bg-gray-300 rounded-lg shadow-md flex flex-col items-center justify-center text-center p-4">
-            <h2 className="text-2xl font-bold">{sessions[5].title}</h2>
-            <p className="mt-2 text-gray-700">{sessions[5].objective}</p>
-            <p className="mt-2 text-gray-500">{sessions[5].date}</p>
-          </a>
-
-          {/* Sesión 7 */}
-          <a href={sessions[6].link} className="col-span-1 row-span-1 bg-gray-300 rounded-lg shadow-md flex flex-col items-center justify-center text-center p-4">
-            <h2 className="text-2xl font-bold">{sessions[6].title}</h2>
-            <p className="mt-2 text-gray-700">{sessions[6].objective}</p>
-            <p className="mt-2 text-gray-500">{sessions[6].date}</p>
-          </a>
-
-          {/* Sesión 3 */}
-          <a href={sessions[2].link} className="col-span-1 row-span-2 bg-gray-300 rounded-lg shadow-md flex flex-col items-center justify-center text-center p-4">
-            <h2 className="text-2xl font-bold">{sessions[2].title}</h2>
-            <p className="mt-2 text-gray-700">{sessions[2].objective}</p>
-            <p className="mt-2 text-gray-500">{sessions[2].date}</p>
-          </a>
-
-          {/* Sesión 8 */}
-          <a href={sessions[7].link} className="col-span-1 row-span-2 bg-gray-300 rounded-lg shadow-md flex flex-col items-center justify-center text-center p-4">
-            <h2 className="text-2xl font-bold">{sessions[7].title}</h2>
-            <p className="mt-2 text-gray-700">{sessions[7].objective}</p>
-            <p className="mt-2 text-gray-500">{sessions[7].date}</p>
-          </a>
-
-          {/* Sesión 5 */}
-          <a href={sessions[4].link} className="col-span-1 row-span-1 bg-gray-300 rounded-lg shadow-md flex flex-col items-center justify-center text-center p-4">
-            <h2 className="text-2xl font-bold">{sessions[4].title}</h2>
-            <p className="mt-2 text-gray-700">{sessions[4].objective}</p>
-            <p className="mt-2 text-gray-500">{sessions[4].date}</p>
-          </a>
-
+      {/* Contenido principal */}
+      <main className="container mx-auto py-10 px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {sessions.map((session, index) => (
+            <div
+              key={index}
+              className={`col-span-1 ${
+                index === 0
+                  ? "lg:col-span-2 row-span-2"
+                  : index === 7
+                  ? "lg:col-span-2"
+                  : "lg:col-span-1"
+              } ${
+                darkMode ? "bg-gray-700" : "bg-white"
+              } rounded-lg p-4 shadow-md transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-lg`}
+            >
+              <h2 className="text-xl font-bold">{session.title}</h2>
+              <p>{session.description}</p>
+              <span className="text-sm text-gray-500">{session.date}</span>
+            </div>
+          ))}
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-center p-6">
-        <p className="text-gray-400 mb-2">© 2024 Santiago Mesa Serna - Todos los derechos reservados</p>
-        <p className="text-gray-400 flex justify-center items-center">
-          Hecho con React <FaReact className="text-blue-500 ml-2" size={20} />
-        </p>
+      <footer className={darkMode ? "bg-gray-800 py-4" : "bg-gray-300 py-4"}>
+        <div className="text-center">
+          <p>© 2024 Santiago Mesa Serna - Todos los derechos reservados</p>
+          <p className="flex justify-center items-center">
+            Hecho con React{" "}
+            <span className="ml-2 text-blue-500">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-6 h-6"
+              >
+                <path d="M12 0C6.6 0 2.4 4.2 2.4 9.6c0 3.6 2.4 7.8 6 8.4.6 0 1.2-.6 1.2-1.2v-2.4c-2.4 0-4.2-1.8-4.2-4.2 0-.6.6-1.2 1.2-1.2h2.4v-2.4c0-.6-.6-1.2-1.2-1.2h-2.4c-.6 0-1.2.6-1.2 1.2 0 1.2.6 1.8 1.2 2.4 1.8.6 4.2 2.4 4.2 4.8 0 1.8-1.8 3.6-3.6 4.2h.6c1.8 0 3.6-1.8 4.2-3.6.6 0 1.2-.6 1.2-1.2V9.6c0-.6-.6-1.2-1.2-1.2h-2.4v-2.4c0-.6-.6-1.2-1.2-1.2-.6 0-1.2.6-1.2 1.2V6c0-.6-.6-1.2-1.2-1.2-.6 0-1.2.6-1.2 1.2V8.4c0 2.4 1.8 3.6 4.2 3.6.6 0 1.2-.6 1.2-1.2V9.6c0-2.4-1.8-3.6-4.2-3.6H12z" />
+              </svg>
+            </span>
+          </p>
+        </div>
       </footer>
     </div>
   );
-};
+}
 
-export default SolidBento;
-
+export default App;
