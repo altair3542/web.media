@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const sessions = [
   {
@@ -56,20 +58,8 @@ function App() {
         darkMode ? "bg-dark text-gray-300" : "bg-gray-100 text-gray-900"
       } min-h-screen transition-all duration-500 ease-in-out`}
     >
-      {/* Botón para cambiar el tema */}
-      <button
-        onClick={() => setDarkMode(!darkMode)}
-        className="absolute top-4 right-4 py-2 px-4 bg-blue-500 text-white rounded"
-      >
-        {darkMode ? "Modo Claro" : "Modo Oscuro"}
-      </button>
-
       {/* Header */}
-      <header className={darkMode ? "bg-gray-800 py-4" : "bg-gray-300 py-4"}>
-        <h1 className="text-center text-3xl font-bold">
-          Temario de Clases de Programación Web
-        </h1>
-      </header>
+      <Header darkMode={darkMode} setDarkMode={setDarkMode} />
 
       {/* Contenido principal */}
       <main className="container mx-auto py-10 px-4">
@@ -96,24 +86,7 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className={darkMode ? "bg-gray-800 py-4" : "bg-gray-300 py-4"}>
-        <div className="text-center">
-          <p>© 2024 Santiago Mesa Serna - Todos los derechos reservados</p>
-          <p className="flex justify-center items-center">
-            Hecho con React{" "}
-            <span className="ml-2 text-blue-500">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-6 h-6"
-              >
-                <path d="M12 0C6.6 0 2.4 4.2 2.4 9.6c0 3.6 2.4 7.8 6 8.4.6 0 1.2-.6 1.2-1.2v-2.4c-2.4 0-4.2-1.8-4.2-4.2 0-.6.6-1.2 1.2-1.2h2.4v-2.4c0-.6-.6-1.2-1.2-1.2h-2.4c-.6 0-1.2.6-1.2 1.2 0 1.2.6 1.8 1.2 2.4 1.8.6 4.2 2.4 4.2 4.8 0 1.8-1.8 3.6-3.6 4.2h.6c1.8 0 3.6-1.8 4.2-3.6.6 0 1.2-.6 1.2-1.2V9.6c0-.6-.6-1.2-1.2-1.2h-2.4v-2.4c0-.6-.6-1.2-1.2-1.2-.6 0-1.2.6-1.2 1.2V6c0-.6-.6-1.2-1.2-1.2-.6 0-1.2.6-1.2 1.2V8.4c0 2.4 1.8 3.6 4.2 3.6.6 0 1.2-.6 1.2-1.2V9.6c0-2.4-1.8-3.6-4.2-3.6H12z" />
-              </svg>
-            </span>
-          </p>
-        </div>
-      </footer>
+      <Footer darkMode={darkMode} />
     </div>
   );
 }
