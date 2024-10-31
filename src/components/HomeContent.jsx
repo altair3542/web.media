@@ -8,21 +8,21 @@ function HomeContent({ darkMode }) {  // Recibimos darkMode como prop
     {
       title: "Sesión 1: Introducción a JavaScript y Estructuras Básicas",
       description: "Familiarizarse con la sintaxis básica de JavaScript.",
-      date: "12.10.1999",
+      date: "22/10/2024",
       link: "/session/1",  // Ruta hacia la página interna de la sesión 1
       isAvailable: true,   // Sesión disponible
     },
     {
       title: "Sesión 2: Manipulación del DOM y Eventos en JavaScript",
       description: "Entender cómo interactuar con el DOM y manejar eventos.",
-      date: "15.10.1999",
+      date: "24/10/2024",
       link: "/session/2",
       isAvailable: false,  // Sesión no disponible aún
     },
     {
       title: "Sesión 3: Introducción a React/Angular",
       description: "Introducir el concepto de componentes y estado en React.",
-      date: "20.10.1999",
+      date: "29/10/2024",
       link: "/session/3",
       isAvailable: false,  // Sesión no disponible aún
     },
@@ -30,7 +30,7 @@ function HomeContent({ darkMode }) {  // Recibimos darkMode como prop
       title: "Sesión 4: Formularios y validaciones",
       description:
         "Aprender a trabajar con formularios dinámicos y validar entradas de usuario.",
-      date: "25.10.1999",
+      date: "31/10/2024",
       link: "/session/4",
       isAvailable: false,  // Sesión no disponible aún
     },
@@ -38,7 +38,7 @@ function HomeContent({ darkMode }) {  // Recibimos darkMode como prop
       title: "Sesión 5: Introducción a Django y Django Rest Framework (DRF)",
       description:
         "Crear una API funcional en Django para que el frontend (React) pueda interactuar con ella.",
-      date: "30.10.1999",
+      date: "05/11/2024",
       link: "/session/5",
       isAvailable: false,  // Sesión no disponible aún
     },
@@ -46,7 +46,7 @@ function HomeContent({ darkMode }) {  // Recibimos darkMode como prop
       title: "Sesión 6: Integración de Frontend con Backend",
       description:
         "Lograr la comunicación total entre frontend y backend, gestionando el estado de la aplicación y la autenticación.",
-      date: "05.11.1999",
+      date: "07/11/2024",
       link: "/session/6",
       isAvailable: false,  // Sesión no disponible aún
     },
@@ -54,14 +54,14 @@ function HomeContent({ darkMode }) {  // Recibimos darkMode como prop
       title: "Sesión 7: Optimización y despliegue",
       description:
         "Optimizar y desplegar la aplicación completa, tanto el frontend como el backend, en un entorno de producción.",
-      date: "10.11.1999",
+      date: "12/11/2024",
       link: "/session/7",
       isAvailable: false,  // Sesión no disponible aún
     },
     {
       title: "Sesión 8: Examen Final",
       description: "Prueba lo que sabes.",
-      date: "15.11.1999",
+      date: "14/11/2024",
       link: "/session/8",
       isAvailable: false,  // Sesión no disponible aún
     },
