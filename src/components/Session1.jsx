@@ -14,7 +14,6 @@ function Session1() {
 
   return (
     <div className="container mx-auto py-8 px-4 lg:px-0">
-      {/* Header con botones para regresar al índice y descargar PDF */}
       <header className="flex justify-between items-center py-4">
         <h1 className="text-3xl font-bold">{sessionTitle}</h1>
         <div className="flex space-x-4">
@@ -90,12 +89,50 @@ let indefinido;            // Tipo Undefined`}
           </code>
         </pre>
 
-        <h3 className="text-xl font-semibold mt-6">Ciclos: for y while</h3>
+        <h3 className="text-xl font-semibold mt-6">Condicionales: if, else if, else</h3>
         <p className="mt-2">
-          Los ciclos se utilizan para repetir un bloque de código. Los ciclos más comunes en
-          JavaScript son <code>for</code> y <code>while</code>.
+          Los condicionales permiten ejecutar diferentes bloques de código en función de si una condición es verdadera o falsa.
         </p>
 
+        <pre className="bg-gray-900 text-green-300 p-4 rounded-lg mt-4 overflow-auto">
+          <code className="language-javascript">
+            {`let edad = 20;
+
+if (edad < 18) {
+    console.log("Eres menor de edad");
+} else if (edad >= 18 && edad < 65) {
+    console.log("Eres adulto");
+} else {
+    console.log("Eres mayor");
+}
+// Este código evaluará la edad y mostrará un mensaje adecuado`}
+          </code>
+        </pre>
+
+        <h3 className="text-xl font-semibold mt-6">Estructura switch</h3>
+        <p className="mt-2">
+          La estructura <code>switch</code> se utiliza para evaluar una variable y ejecutar diferentes bloques de código según su valor.
+        </p>
+
+        <pre className="bg-gray-900 text-green-300 p-4 rounded-lg mt-4 overflow-auto">
+          <code className="language-javascript">
+            {`let dia = "lunes";
+
+switch (dia) {
+    case "lunes":
+        console.log("Hoy es lunes");
+        break;
+    case "martes":
+        console.log("Hoy es martes");
+        break;
+    default:
+        console.log("No es lunes ni martes");
+}
+// Este código imprimirá el día correspondiente`}
+          </code>
+        </pre>
+
+        <h3 className="text-xl font-semibold mt-6">Ciclos: for y while</h3>
         <h4 className="text-lg font-semibold mt-4">Ciclo for</h4>
         <pre className="bg-gray-900 text-green-300 p-4 rounded-lg mt-4 overflow-auto">
           <code className="language-javascript">
@@ -121,8 +158,6 @@ while (contador < 5) {
         <h3 className="text-xl font-semibold mt-6">Funciones y Arrow Functions</h3>
         <p className="mt-2">
           Las funciones en JavaScript son bloques de código que se pueden definir y reutilizar.
-          Puedes crear una función con la palabra clave <code>function</code>, seguida del nombre de
-          la función.
         </p>
 
         <pre className="bg-gray-900 text-green-300 p-4 rounded-lg mt-4 overflow-auto">
@@ -134,11 +169,6 @@ while (contador < 5) {
 console.log(saludar('Ana')); // Esto imprimirá "Hola, Ana"`}
           </code>
         </pre>
-
-        <p className="mt-4">
-          También puedes escribir funciones usando <strong>Arrow Functions</strong> (funciones
-          flecha), que son una sintaxis más concisa.
-        </p>
 
         <pre className="bg-gray-900 text-green-300 p-4 rounded-lg mt-4 overflow-auto">
           <code className="language-javascript">
@@ -166,3 +196,4 @@ console.log(saludar('Carlos')); // Esto imprimirá "Hola, Carlos"`}
 }
 
 export default Session1;
+
