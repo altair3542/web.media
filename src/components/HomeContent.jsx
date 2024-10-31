@@ -69,8 +69,8 @@ function HomeContent({ darkMode }) {  // Recibimos darkMode como prop
 
 
   return (
-    <main className="flex-grow container mx-auto py-8 px-4 lg:px-0"> {/* Aire con padding en responsive */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"> {/* Ajuste de columnas */}
+    <main className="flex-grow container mx-auto py-8 px-4 lg:px-0">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {sessions.map((session, index) => (
           <div
             key={index}
@@ -82,8 +82,8 @@ function HomeContent({ darkMode }) {  // Recibimos darkMode como prop
                 : "lg:col-span-1"
             } bg-gray-700 rounded-lg p-4 shadow-md transition-all duration-500 ease-in-out hover:shadow-lg`}
             style={{ minHeight: "250px", position: "relative" }}
-            onMouseEnter={() => setHoveredIndex(index)}  // Cambia hoveredIndex al hacer hover
-            onMouseLeave={() => setHoveredIndex(null)}  // Restablece hoveredIndex al salir del hover
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
           >
             {/* Contenido inicial: Título y fecha */}
             <div
@@ -103,21 +103,24 @@ function HomeContent({ darkMode }) {  // Recibimos darkMode como prop
                 hoveredIndex === index ? "translate-y-0" : "translate-y-full"
               }`}
               style={{
-                backgroundImage: `url(/images/imagen${index + 1}.jpg)`,  // Ruta de imágenes en public
+                backgroundImage: `url(/images/imagen${index + 1}.jpg)`,
                 backgroundColor: "rgba(0, 0, 0, 0.7)",
               }}
             >
               <div className="bg-opacity-80 bg-black p-4 rounded-lg w-full">
                 <p className="text-lg text-white mb-4">{session.description}</p>
                 <a
-                  href={session.link ? session.link : "#"}  // Condicional para el link
+                  href={session.isAvailable ? session.link : "#"}
                   className={`py-2 px-4 rounded-lg shadow-lg ${
-                    session.link
+                    session.isAvailable
                       ? "bg-blue-500 text-white"
                       : "bg-gray-500 text-gray-300 cursor-not-allowed"
                   }`}
+                  onClick={(e) => {
+                    if (!session.isAvailable) e.preventDefault();
+                  }}
                 >
-                  {session.link ? "Ver Sesión" : "Próximamente..."}  {/* Texto condicional */}
+                  {session.isAvailable ? "Ver Sesión" : "Próximamente..."}
                 </a>
               </div>
             </div>
@@ -128,4 +131,4 @@ function HomeContent({ darkMode }) {  // Recibimos darkMode como prop
   );
 }
 
-export default HomeContent;  // Cambiar el nombre según prefieras
+export default HomeContent;
