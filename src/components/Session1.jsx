@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Prism from "prismjs";
-import "prismjs/themes/prism-synthwave84.css"; // Puedes cambiar el tema aquí
+import "prismjs/themes/prism-tomorrow.css"; // Puedes cambiar el tema aquí
 import "prismjs/components/prism-javascript";
 
 function Session1() {
@@ -196,4 +196,3 @@ console.log(saludar('Carlos')); // Esto imprimirá "Hola, Carlos"`}
 }
 
 export default Session1;
-
