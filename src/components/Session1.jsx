@@ -14,16 +14,19 @@ function Session1() {
 
   return (
     <div className="container mx-auto py-8 px-4 lg:px-0">
-      <header className="flex justify-between items-center py-4">
-        <h1 className="text-3xl font-bold">{sessionTitle}</h1>
-        <div className="flex space-x-4">
-          <Link to="/" className="py-2 px-4 bg-blue-500 text-white rounded-lg shadow-lg">
+      <header className="flex flex-col md:flex-row justify-between items-center py-4 space-y-4 md:space-y-0">
+        <h1 className="text-3xl font-bold text-center md:text-left">{sessionTitle}</h1>
+        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+          <Link
+            to="/"
+            className="py-2 px-4 bg-blue-500 text-white rounded-lg shadow-lg text-center"
+          >
             Volver al Índice
           </Link>
           <a
             href={`/sessions/${pdfName}`}
             download
-            className="py-2 px-4 bg-purple-600 text-white rounded-lg shadow-lg"
+            className="py-2 px-4 bg-purple-600 text-white rounded-lg shadow-lg text-center"
           >
             Descargar PDF
           </a>

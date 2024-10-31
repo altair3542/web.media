@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomeContent from "./components/HomeContent";
-import Session1 from "./components/Session1";  // Página de la sesión 1
+import Session1 from "./components/Session1"; // Página de la sesión 1
+// Importa más sesiones conforme se habiliten
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -23,10 +24,9 @@ function App() {
           {/* Ruta del índice */}
           <Route path="/" element={<HomeContent />} />
 
-          {/* Ruta de la primera sesión */}
+          {/* Solo rutas para las sesiones disponibles */}
           <Route path="/session/1" element={<Session1 />} />
-
-          {/* Añadir más rutas de sesiones */}
+          {/* Agrega más rutas aquí cuando las sesiones estén disponibles */}
         </Routes>
 
         {/* Footer */}
