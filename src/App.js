@@ -1,41 +1,44 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ThemeProvider, useTheme } from "./context/ThemeContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomeContent from "./components/HomeContent";
-import Session1 from "./components/Session1"; // Página de la sesión 1
-// Importa más sesiones conforme se habiliten
+import Session1 from "./components/Session1";
+import Session2 from "./components/Session2";
+import Session3 from "./components/Session3";
+import Session4 from "./components/Session4";
+import Session5 from "./components/Session5";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true);
+  const { darkMode } = useTheme();
 
   return (
     <Router>
       <div
         className={`min-h-screen flex flex-col justify-between ${
-          darkMode ? "bg-gray-900 text-gray-300" : "bg-gray-100 text-gray-900"
-        } transition-all duration-500 ease-in-out`}
+          darkMode ? "bg-gray-900 text-gray-100" : "bg-gray-100 text-gray-900"
+        } transition-all duration-300`}
       >
-        {/* Header */}
-        <Header darkMode={darkMode} setDarkMode={setDarkMode} />
-
-        {/* Definimos las rutas usando Routes */}
+        <Header />
         <Routes>
-          {/* Ruta del índice */}
           <Route path="/" element={<HomeContent />} />
-
-          {/* Solo rutas para las sesiones disponibles */}
           <Route path="/session/1" element={<Session1 />} />
-          {/* Agrega más rutas aquí cuando las sesiones estén disponibles */}
+          <Route path="/session/2" element={<Session2 />} />
+          <Route path="/session/3" element={<Session3 />} />
+          <Route path="/session/4" element={<Session4 />} />
+          <Route path="/session/5" element={<Session5 />} />
         </Routes>
-
-        {/* Footer */}
-        <Footer darkMode={darkMode} />
+        <Footer />
       </div>
     </Router>
   );
 }
 
-export default App;
-
-
+export default function RootApp() {
+  return (
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  );
+}
